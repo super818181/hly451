@@ -1699,7 +1699,7 @@
                 <div class="hide-indiv" @click="hideIndiv()"></div>
                 <div class="indiv-title"></div>
                 <div class="enter-indiv">
-                    <input type="text" placeholder="请输入个性暗号" v-model="inputIndiv" ng-blur="blur()">
+                    <input type="text" placeholder="请输入安全码" v-model="inputIndiv" ng-blur="blur()">
                 </div>
                 <div class="confirm-indiv" @click="showIndivConfirm()"></div>
             </div>
@@ -1767,7 +1767,7 @@
             <img src="/files/images/common/roomCard.png">
             <span>{{userData.card}}</span>
         </div>
-        <div class="flex-item pdd00305"><span>{{game.round}}</span>/<span>{{game.total_num}}</span></div>
+        <div class="flex-item"><span>{{game.round}}</span>/<span>{{game.total_num}}</span><span class="pdd00305"></span></div>
         <div class="right">
             <div class="rules-focus">
                 <span v-on:click="sendToChat" class="return-index"></span></p>

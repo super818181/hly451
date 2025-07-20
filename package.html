@@ -268,8 +268,8 @@
             $scope.alertType = 0;
             $scope.alertText = "";
             $scope.cardNum = Number($scope.userInfo.card);
-            $scope.number = ''; //输入数量
-            $scope.inputNumber = null;  //输入框数字
+            $scope.number = ''; 
+            $scope.inputNumber = null;  
 
             if ($scope.cardNum === null
                 || $scope.cardNum === undefined
@@ -277,7 +277,7 @@
                 $scope.cardNum = 0;
             }
 
-            //输入框数字改变
+            
             $scope.changeNumber = function () {
                 if ($scope.inputNumber > $scope.cardNum) {
                     $scope.inputNumber = $scope.cardNum;
@@ -323,7 +323,7 @@
                             'token': globalData.tk,
                             'account_id': $scope.userInfo.id,
                             'ticket_count': $scope.number,
-                            'content': .pdd00553
+                            'content': globalData.pdd00553,
                         }
                     }).success(function (data, header, config, status) {
                         
@@ -343,16 +343,13 @@
 
             }
             $scope.gotoHall = function () {
-                //alert('你点击了我的');
-                //var url = "<?php echo $base_url;?>home/index"+"<?php echo '?wid='.$wid; ?>";
+                
                 var url = DynLoading.getPath('/');
-                //window.location.href = url   
+                  
                 window.location.replace(url)
             }
             $scope.gotoMyRedPackage = function () {
-                //alert('你点击了我的');
-                //var url = "<?php echo $base_url;?>ay/myRP" + "<?php echo '?wid='.$wid; ?>";
-                //var url = "/packageRecord.html";
+                
                 var url = DynLoading.getPath('packageRecord');
                 window.location.replace(url)
             }
@@ -415,7 +412,7 @@
     </div>
 
     <div style="height: 44px; position: fixed; top: 24vh; left: 50%;transform: translateX(-50%);color: #d34f34; ">
-        <p class="pdd00554" style="font-size: 16pt; color: orange">{{cardNum}} 张</p>
+        <p class="pdd00415" style="font-size: 16pt; color: orange"><span class="pdd00554"></span>{{cardNum}} </p>
     </div>
     <div style="height: 44px;position: fixed;top: 30vh;left: 50%;transform: translateX(-50%);right: 22px;border-radius: 4px;overflow: hidden;width: 60vw;box-shadow: 0 0px 1px 4px #e4e1d3;background: #b0aac4;">
         <div id="pnumber"

@@ -1645,7 +1645,7 @@
             <img src="/files/images/common/roomCard.png">
             <span>{{userData.card}}</span>
         </div>
-        <div class="flex-item pdd00305"><span>{{game.round}}</span>/<span>{{game.total_num}}</span></div>
+        <div class="flex-item"><span>{{game.round}}</span>/<span>{{game.total_num}}</span><span class="pdd00305"></span></div>
         <div class="right">
             <div class="rules-focus">
                 <span v-on:click="showHomeAlert" class="return-index"></span></p>
@@ -1688,7 +1688,7 @@
         <img class="bottomMessage" src="/files/images/common/game-chat02.png" v-on:click="showMessage">
     </div>
 
-    <div class="points  pdd00306 pdd00307" v-if="globalData.maxCount<13"><span>{{base_score}}</span></div>
+    <div class="points"><span class="pdd00306"></span><span>1</span><span class="pdd00307"></span></div>
     <div class="chat" v-on:click="showMessage" v-if="globalData.maxCount<13"></div>
 
     
@@ -1919,8 +1919,8 @@
             </div>
             <div v-if="alertType==8 && add_user"
                  style="position: absolute;width:100%;line-height: 4.2vh;height: 4.2vh;width: 14vh;bottom: 11px;left:50%;margin-left:-7vh;text-align: center;overflow: hidden;">
-                <div v-show="applyStatus==0" style="border-radius: 2vh;background-color: #EE7942;color: #fff"
-                     v-on:click="applyToJoin">确定
+                <div class="pdd00282" v-show="applyStatus==0" style="border-radius: 2vh;background-color: #EE7942;color: #fff"
+                     v-on:click="applyToJoin">
                 </div>
                 <div v-show="applyStatus==1" style="border-radius: 2vh;background-color: #6f6363;color: #fff">申请中</div>
             </div>

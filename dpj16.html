@@ -8,7 +8,7 @@
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="msapplication-tap-highlight" content="no"/>
-    <title>1.6</title>
+    <title>16</title>
     <script type="text/javascript">
         var _thost = 'http://' + window.location.host;
         var pathArr = window.location.pathname.split("/");
@@ -100,17 +100,17 @@
             "cfileUrl": "/",
             "isWechat": obj.data.is_weixin,
             "isXianliao": obj.data.is_xianliao,
-            
+            "xlTitle": "(" + room_number + ")",
             "roomStatus": obj.data.room_status,
             "scoreboard": obj.data.balance_scoreboard,
             "session": obj.data.session,
-            
+            "shareTitle": obj.data.platfrom_name + "：(" + room_number + ")",
             "gameType": obj.data.game_type,
             "maxCount": obj.data.max_count,
             "tk": token,
             "hallName": obj.data.platfrom_name,
             "hallEname": obj.data.platform_ename,
-            
+            "gameName": "",
             "qrUrl": ''
         };
 
@@ -516,7 +516,6 @@
             z-index: 110;
         }
 
-        
         .auto-ready {
             position: absolute;
             bottom: .05rem;
@@ -1352,7 +1351,7 @@
         
     </p>
 </div>
-<span class="copy-tip pdd00297" id="tips" style="display:none"></span></p>
+<span class="copy-tip pdd00297" id="tips" style="display:none"></span>
 <textarea id="room_str" readonly="readonly"></textarea>
 <div style="position: fixed;width:100%;height:100%;top:0;left:0;background: rgb(7, 26, 69);z-index:115;" id="loading">
     <div class="load4">
@@ -1371,10 +1370,10 @@
             <img src="/files/images/common/roomCard.png">
             <span>{{userData.card}}</span>
         </div>
-        <div class="flex-item pdd00305"><span>{{game.round}}</span>/<span>{{game.total_num}}</span></div>
+        <div class="flex-item"><span>{{game.round}}</span>/<span>{{game.total_num}}</span><span class="pdd00305"></span></div>
         <div class="right">
             <div class="rules-focus">
-                <span v-on:click="sendToChat" class="return-index"></span></p>
+                <span v-on:click="sendToChat" class="return-index"></span>
                 <span class="watch" v-on:click="showGuests">
                     <i class="guestNum">{{guests.length}}</i>
                 </span>
@@ -1383,8 +1382,8 @@
     </div>
     <div class="icon-more-mask" @click="hideIconMore"></div>
     <div class="icon-more" @click="showIconMore">
-        <span class="game-indiv" v-on:click="showIndiv"></span></p>
-        <span class="game-rule" v-on:click="showGameRule"></span></p>
+        <span class="game-indiv" v-on:click="showIndiv"></span>
+        <span class="game-rule" v-on:click="showGameRule"></span>
         <span class="game-sound" v-on:click="showAudioSetting">
         </span>
     </div>
@@ -1398,6 +1397,7 @@
         <span>{{ruleInfo.baseScore}}</span>
         
     </div>
+    <div class="chat" v-on:click="showMessage"></div>
     <div class="chat" v-on:click="showMessage"></div>
 
 
@@ -1482,6 +1482,7 @@
 
 
     
+    
 
     
     <img src="/files/images/guest/is_watching.png" style="position: fixed;z-index: 90;width: 50%;left: 25%;top: 50%;"
@@ -1558,12 +1559,12 @@
                     <div class="person-info">
                         <img :src="userData.avatar" class="avatar">
                         <div class="name">{{userData.nickname}}</div>
-                        <div class="id pdd00301"> {{userData.userCode}}</div>
+                       <div class="id pdd00301"> {{userData.userCode}}</div>
                     </div>
                     <img src="/files/images/daoyou/package/line.jpg"
                          style="width: 90%;margin-left: 5%;margin-top: 0.1rem;">
                     <div class="my-indiv">
-                        <span class="label pdd00250"></span></p>
+                        <span class="label pdd00250"></span>
                         <span class="my-indiv-text">{{userData.individuality}}</span>
                     </div>
                     <div class="pdd00302" style="font-size: 0.15rem;margin-left: 4vw;color: #8a6737"></div>
@@ -1576,20 +1577,26 @@
     <div class="showOnceIndiv" v-show="showOnceIndiv"
          style="background: url(/files/images/daoyou/game/indiv_bg.png);background-size: 100% 100%;">
         <div style="position:relative;">
-            <div class="pdd00303" style="position: absolute;color: rgb(245, 155, 126);top: 0.3rem;left: 1.1rem;"></div>
-            <div style="position:absolute;color: #000;top: 0.5rem;height: 0.25rem;line-height: 0.25rem;left: 0.9rem;width: 1.1rem;text-align: center;font-size: 12px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-                编号:{{userData.individuality}}
-            </div>
+           <div class="pdd00303" style="position: absolute;color: rgb(245, 155, 126);top: 0.3rem;left: 1.1rem;"></div>
+            <div class="pdd00304" style="position:absolute;color: #000;top: 0.5rem;height: 0.25rem;line-height: 0.25rem;left: 0.9rem;width: 1.1rem;text-align: center;font-size: 12px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                {{userData.individuality}}
             </div>
         </div>
     </div>
 
+   
     
+   
+    
+
+    
+   
     <div v-if="player[0].account_id==userData.accountId&&player[0].is_guest!=1"
          v-show="showShowGroupCards&&player[0].account_status==7" @click="tipsCards()" class="tipButton">
         <img src="/files/images/paijiuD_xy/clickTips.png"/>
     </div>
 
+    
     
 
 
@@ -1602,9 +1609,9 @@
     </div>
 
     
-
     
 
+    
     
     <img class="qrcode" src="/files/images/common/erweima.png" onclick="makeQrCode()">
 
@@ -1622,6 +1629,21 @@
         <a class="pdd00416" style="font-size: 16px;color: #fff;padding: 5px 14px;position:relative;"></a></div>
 
     
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
 
     
     <div class="alert" id="valert" v-show="isShowAlert">
@@ -1638,7 +1660,7 @@
                     </div>
                     
                 </div>
-                <div v-if="alertType==8 && add_user" style="font-size: 2.2vh">
+               <div v-if="alertType==8 && add_user" style="font-size: 2.2vh">
                     <div class="pdd00347"></div>
                     <div style="height: 6.6vh;">
                         <img v-bind:src="ownerUser.avatar"
@@ -1701,12 +1723,13 @@
                 <div class="pdd00282" v-show="applyStatus==0" style="border-radius: 2vh;background-color: #EE7942;color: #fff"
                      v-on:click="applyToJoin">
                 </div>
-                <div class="pdd00473" v-show="applyStatus==1" style="border-radius: 2vh;background-color: #6f6363;color: #fff"></div>
+                <div v-show="applyStatus==1" style="border-radius: 2vh;background-color: #6f6363;color: #fff">申请中</div>
             </div>
         </div>
     </div>
 
-        <div class="table" id="table" style="position: relative; width: 100%; height: 100%; z-index: 80; overflow: hidden;"
+    
+    <div class="table" id="table" style="position: relative; width: 100%; height: 100%; z-index: 80; overflow: hidden;"
          v-on:click="confirmAudioSetting('1')">
         <img class="tableBack" src="/files/images/table/table.jpg"
              style="position: absolute;top:0;left: 0;width: 100vw;height: 100vh"/>
@@ -1736,7 +1759,7 @@
             </div>
 
             
-
+            
 
             
             <div class="myCards"
@@ -1765,6 +1788,7 @@
                 </div>
             </div>
 
+            
             
 
 
@@ -1823,8 +1847,6 @@
         </div>
 
         
-
-
         
         <div v-for="p in player" v-if="p.num!=1&&ruleInfo.banker_mode!=2"
              v-bind:class="{true:'memberGoText' + p.num,false:'memberRobText' + p.num}[ruleInfo.banker_mode==5]"
@@ -1843,6 +1865,7 @@
         </div>
 
         
+        
 
         
         <div class="memberTimesText1" v-if="ruleInfo.banker_mode!=4"
@@ -1854,6 +1877,7 @@
             <img v-bind:src="p.timesImg" style="position: absolute; width: 100%;">
         </div>
 
+        
         
 
 
@@ -1884,15 +1908,18 @@
              v-if="p.account_status>=8&&p.open_left&&game.show_card&&p.bullImgLeft.length>=1&&guestNotShowBullImg==true"
              style="display: none;z-index: 17;">
             
+            
             <img v-bind:src="p.bullImgLeft" style="height:100%;position: relative;">
         </div>
 
         
+       
 
 
         <div v-for="p in player" v-bind:class="'memberBull memberBullLose' + p.num + '11'"
              v-if="p.account_status>=8&&p.open_left&&game.show_card&&p.bullImgLeftLose.length>=1&&guestNotShowBullImg==true"
              style="display: none;z-index: 17;">
+            
             
             <img v-bind:src="p.bullImgLeftLose" style="height:100%;position: relative;">
         </div>
@@ -1901,15 +1928,18 @@
              v-if="p.account_status>=8&&p.open_right&&game.show_card&&p.bullImgRight.length>=1&&guestNotShowBullImg==true"
              style="display: none;z-index: 17;">
             
+            
             <img v-bind:src="p.bullImgRight" style="height:100%;position: relative;">
         </div>
 
+        
         
 
 
         <div v-for="p in player" v-bind:class="'memberBull memberBullLose' + p.num + '22'"
              v-if="p.account_status>=8&&p.open_right&&game.show_card&&p.bullImgRightLose.length>=1&&guestNotShowBullImg==true"
              style="display: none;z-index: 17;">
+            
             
             <img v-bind:src="p.bullImgRightLose" style="height:100%;position: relative;">
         </div>
@@ -1930,10 +1960,10 @@
         </div>
 
         
+       
 
 
         <div v-for="p in player" key="p.num" class="member" v-bind:class="'member' + p.num" v-show="p.account_id<=0">
-            
             
             <div class="quitBack" style="" v-on:click="sitDown(p.serial_num)">
                 <img :src="'/files/images/daoyou/seat/seat' + p.serial_num + '.png'">
@@ -1950,6 +1980,7 @@
             <img src="/files/images/nbull/player_selected.png" class="banker" v-show="player[0].is_banker">
             <img :src="'/files/images/daoyou/seat/seatName' + player[0].serial_num + '.png'" class="seatName"
                  style="position: absolute;left: 0vh;width: 0.35rem;bottom: 0.32rem;">
+            
             
 
             <div class="bottom" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 2px;overflow: hidden;">
@@ -1985,6 +2016,7 @@
             <img :src="'/files/images/daoyou/seat/seatName' + p.serial_num + '.png'" class="seatName"
                  style="position: absolute;left: 0vh;width: 0.35rem;bottom: 0.32rem;">
             
+            
 
             <div class="bottom" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 2px;overflow: hidden;">
                 <div class="bname" style="text-align: center;overflow: hidden;">{{p.nickname}}</div>
@@ -2013,6 +2045,7 @@
 
 
         
+        
 
         
         <div id="playerCoins" style="display: none;">
@@ -2024,6 +2057,7 @@
         </div>
 
         
+       
 
 
         
@@ -2040,6 +2074,8 @@
             <p style="color: rgb(247, 206, 70); font-size: 2.4vh; font-weight: bolder; width: 100%;height: 30px; line-height: 30px; text-align: center;font-family:'Helvetica 微软雅黑';">
                 {{ruleInfo.bankerText}}</p>
         </div>
+       
+        
         
         <div id="divBetText" v-show="showClockBetText"
              v-bind:style="'position: absolute;top: 28.5%; left: 0px; width:' + width + 'px; height: 30px; z-index: 111;'">
@@ -2052,10 +2088,16 @@
             <p class="pdd00357" style="color: rgb(247, 206, 70); font-size: 2.4vh; font-weight: bolder; width: 100%;height: 30px; line-height: 30px; text-align: center;font-family:'Helvetica 微软雅黑';">
                 </p>
         </div>
+       
+       
+        
+       
+        
         
         
         <div id="divBetText" v-show="showClockShowCard"
              v-bind:style="'position: absolute;top: 28.5%; left: 0px; width:' + width + 'px; height: 30px;'">
+            
             <p class="pdd00356" style="color: rgb(247, 206, 70); font-size: 2.4vh; font-weight: bolder; width: 100%;height: 30px; line-height: 30px; text-align: center;font-family:'Helvetica 微软雅黑';">
                 </p>
         </div>
@@ -2263,23 +2305,30 @@
     
     <div class="rules-mask" v-show="ruleInfo.isShowRule" v-on:click="cancelGameRule">
         <div class="content">
+            
             <div class="rule-title pdd00386"></div>
             <div class="niuniu-rules">
                 
                 <div class="flex-cont rule-item" data-pos="0">
                     <div class="rules-name pdd00387"></div>
-                    <div class="flex-item" v-if="ruleInfo.banker_mode==1"><span class="zhuangType pdd00388"></span></p></div>
-                    <div class="flex-item" v-if="ruleInfo.banker_mode==2"><span class="zhuangType pdd00389"></span></p></div>
+                    <div class="flex-item" v-if="ruleInfo.banker_mode==1"><span class="zhuangType pdd00388"></span></div>
+                    <div class="flex-item" v-if="ruleInfo.banker_mode==2"><span class="zhuangType pdd00389"></span></div>
                 </div>
                 <div class="flex-cont" data-pos="1">
                     <div class="rules-name pdd00393"></div>
                     <div class="flex-item"><span class="pdd00394">{{ruleInfo.baseScore}}</span></div>
                     
+                    
+                    
+                    
+                    
                 </div>
+                
+                
                 
                 <div class="flex-cont rules-item" data-pos="3" v-if="ruleInfo.special_card==1">
                     <div class="name pdd00474"></div>
-                    <span class="pdd00475" style="flex-wrap: wrap; display: flex; width: 70%;"></span></p>
+                    <span class="pdd00475" style="flex-wrap: wrap; display: flex; width: 70%;"></span>
                 </div>
                 <div class="flex-cont" data-pos="4">
                     <div class="rules-name pdd00397"></div>
@@ -2287,13 +2336,16 @@
                 </div>
                 <div class="flex-cont" data-pos="6">
                     <div class="rules-name pdd00403"></div>
-                    <div class="flex-item pdd00341" v-if="ruleInfo.bet_type==0"></div>
+                   <div class="flex-item pdd00341" v-if="ruleInfo.bet_type==0"></div>
                     <div class="flex-item pdd00342" v-if="ruleInfo.bet_type==1"></div>
                     <div class="flex-item pdd00343" v-if="ruleInfo.bet_type==2"></div>
                     <div class="flex-item pdd00344" v-if="ruleInfo.bet_type==4"></div>
                     <div class="flex-item pdd00345" v-if="ruleInfo.bet_type==3"></div>
                     <div class="flex-item pdd00346" v-if="ruleInfo.bet_type==5"></div>
                 </div>
+
+                
+                
 
                 
                 <img src="/files/images/paijiuD/ruleD2.png" style="width: 80%;margin: 0 auto;margin-top: 2vh;"/>
@@ -2304,58 +2356,6 @@
         </div>
     </div>
 
-
-    
-                             <div class="selectItem" style="margin-left:10px;" v-if="ruleInfo.baseScore==2">
-                                <div class="selectText pdd00051"></div>
-                            </div>                          
-                            <div class="selectItem" style="margin-left:10px;" v-if="ruleInfo.baseScore==3">
-                                <div class="selectText pdd00052"></div>
-                            </div>
-                            <div class="selectItem" style="margin-left:10px;" v-if="ruleInfo.baseScore==4">
-                                <div class="selectText pdd00053"></div>
-                            </div>
-                            <div class="selectItem" style="margin-left:10px;" v-if="ruleInfo.baseScore==5">
-                                <div class="selectText pdd00476"></div>
-                            </div>
-                        </div>
-                    </div>      
-
-                    <div class="selectPart" style="height:12vh;line-height:4vh;padding:0.8vh 0;">
-                        <div class="selectTitle pdd00014"></div>
-                        <div class="selectList">                        
-                            <div class="selectItem" style="margin-left:10px;">
-                                <div class="selectText pdd00220" ></div>
-                            </div>
-                        </div>
-                    </div>  
-                    <div class="selectPart" style="height:4vh;line-height:4vh;padding:0.8vh 0;">
-                        <div class="selectTitle pdd00017"></div>
-                        <div class="selectList">                        
-                            <div class="selectItem" style="margin-left:10px;" >
-                                <div class="selectText pdd00477" ></div>
-                            </div>
-                        </div>
-                    </div>  
-
-
-                    <div class="selectPart" style="height:4vh;line-height:4vh;padding:0.8vh 0;">
-                        <div class="selectTitle pdd00026"></div>
-                        <div class="selectList">
-                            <div class="selectItem" style="margin-left:10px;" v-if="ruleInfo.ticket==1">
-                                <div class="selectText pdd00478" ></div>
-                            </div>                          
-                            <div class="selectItem" style="margin-left:10px;" v-if="ruleInfo.ticket==2">
-                                <div class="selectText pdd00479" ></div>
-                            </div>
-                        </div>
-                    </div>
-                
-                 <div class="createCommit pdd00350" v-on:click="cancelGameRule" ></div>
-
-                </div>
-            </div>
-        </div>-->
 
     
     <div class="audioRoom-pj" id="vaudioRoom" v-show="editAudioInfo.isShow">
@@ -2395,13 +2395,12 @@
                     </div>
                 </div>
 
-                
+               
 
             </div>
         </div>
     </div>
 
-    
     <div class="alert" v-show="isShowNoteImg" v-on:click="hideNoteImg()">
         <div class="alertBack"></div>
         <img src="/files/images/paijiuD/ruleD.png"
@@ -2415,7 +2414,6 @@
         <div class="alertTextB">{{alertTextB}}</div>
     </div>
 
-    
     <div class="giftBox" v-show="isShowGiftBox" style="background-image: url(/files/images/daoyou/shop/shop_bg2.png)">
         <div style="height: 0.45rem;position: relative;">
             <img src="/files/images/daoyou/shop/title.png"
@@ -2460,11 +2458,11 @@
         <div style="background: rgba(0,0,0,0.5);position: fixed;top: 0;left: 0;width: 100%;height: 100%;"
              onclick="hideQrCode()"></div>
         <div style="background: url(/files/images/daoyou/indiv/box.png) no-repeat;position: relative;background-size: 100% 100%;width: 64vw;height: 80vw;left: 50%;top: 50%;transform: translate(-50%,-50%);">
-            <span style="position:absolute;top: 0.1rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 18px;" class="pdd00410"></span></p>
+            <span style="position:absolute;top: 0.1rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 18px;" class="pdd00410"></span>
             <div id="divOne"></div>
             <img id='imgOne'
                  style="width: 50vw; height:50vw; box-sizing: border-box;position: absolute;overflow: scroll; border-radius: 4px;left: 50%;top: 48%;transform: translate(-50%,-50%);"/>
-            <span style="position:absolute;bottom: 0.25rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 16px;" class="pdd00411"></span></p>
+            <span style="position:absolute;bottom: 0.25rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 16px;" class="pdd00411"></span>
         </div>
     </div>
 </div>
@@ -2485,7 +2483,6 @@
 <script type="text/javascript" src="/files/js/clipboard.min.js"></script>
 <script>
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-        
         WeixinJSBridge.call('hideOptionMenu');
     });
 </script>

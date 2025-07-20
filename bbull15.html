@@ -1717,7 +1717,7 @@
         
     </p>
 </div>
-<span class="copy-tip pdd00297" id="tips" style="display:none"></span></p>
+<span class="copy-tip pdd00297" id="tips" style="display:none"></span>
 
 <textarea id="room_str" readonly="readonly"></textarea>
 
@@ -1736,7 +1736,7 @@
     </div>
 
     
-    <span class="copy-tip pdd00298" id="tips" style="display:none"></span></p>
+    <span class="copy-tip pdd00298" id="tips" style="display:none"></span>
     <img src="/files/images/common/icon_copy2.png" v-if="globalData.maxCount<=10" class="needsclick zhuonuo"
          id="copy_btn" @click="copyLink"/>
     <img src="/files/images/common/icon_copy2.png" v-if="globalData.maxCount>10" class="needsclick zhuonuo2"
@@ -1824,7 +1824,7 @@
                     <img src="/files/images/daoyou/package/line.jpg"
                          style="width: 90%;margin-left: 5%;margin-top: 0.1rem;">
                     <div class="my-indiv">
-                        <span class="label pdd00250"></span></p>
+                        <span class="label pdd00250"></span>
                         <span class="my-indiv-text">{{userData.individuality}}</span>
                     </div>
                     <div class="pdd00302" style="font-size: 0.15rem;margin-left: 4vw;color: #8a6737"></div>
@@ -1838,9 +1838,8 @@
          style="background: url(/files/images/daoyou/game/indiv_bg.png);background-size: 100% 100%;">
         <div style="position:relative;">
             <div class="pdd00303" style="position: absolute;color: rgb(245, 155, 126);top: 0.3rem;left: 1.1rem;"></div>
-            <div style="position:absolute;color: #000;top: 0.5rem;height: 0.25rem;line-height: 0.25rem;left: 0.9rem;width: 1.1rem;text-align: center;font-size: 12px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-                编号:{{userData.individuality}}
-            </div>
+            <div class="pdd00304" style="position:absolute;color: #000;top: 0.5rem;height: 0.25rem;line-height: 0.25rem;left: 0.9rem;width: 1.1rem;text-align: center;font-size: 12px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                {{userData.individuality}}
             </div>
         </div>
     </div>
@@ -1854,7 +1853,7 @@
         <div class="flex-item pdd00305"><span>{{game.round}}</span>/<span>{{game.total_num}}</span></div>
         <div class="right">
             <div class="rules-focus">
-                <span v-on:click="sendToChat" class="return-index"></span></p>
+                <span v-on:click="sendToChat" class="return-index"></span>
                 <span class="watch" v-on:click="showGuests">
                     <i class="guestNum">{{guests.length}}</i>
                 </span>
@@ -1863,8 +1862,8 @@
     </div>
     <div class="icon-more-mask" @click="hideIconMore"></div>
     <div class="icon-more" @click="showIconMore">
-        <span class="game-indiv" v-on:click="showIndiv"></span></p>
-        <span class="game-rule" v-on:click="showGameRule"></span></p>
+        <span class="game-indiv" v-on:click="showIndiv"></span>
+        <span class="game-rule" v-on:click="showGameRule"></span>
         <span class="game-sound" v-on:click="showAudioSetting">
         </span>
     </div>
@@ -1873,8 +1872,8 @@
         <img class="toChat" src="/files/images/daoyou/hall/btn_chat.png" v-on:click="goToChat">
         
         <img class="qrcode" src="/files/images/common/erweima.png" onclick="makeQrCode()">
-        <div class="game-round pdd00305" v-if="globalData.maxCount>10">
-            <span>{{game.round}}</span>/<span>{{game.total_num}}</span>
+        <div class="game-round" v-if="globalData.maxCount>10">
+            <span>{{game.round}}</span>/<span>{{game.total_num}}</span><span class="pdd00305"></span>
         </div>
         <div class="game-points pdd00306 pdd00307" v-if="globalData.maxCount>10"><span>{{base_score}}</span></div>
         <img class="bottomTab" src="/fiesc/images/nbull/bottom.png" alt="">
@@ -1893,7 +1892,7 @@
         <img class="bottomMessage" src="/files/images/common/game-chat02.png" v-on:click="showMessage">
     </div>
 
-    <div class="points  pdd00306 pdd00307" v-if="globalData.maxCount<13"><span>{{base_score}}</span></div>
+    <div class="points" v-if="globalData.maxCount<13"><span class="pdd00306"></span><span>{{base_score}}</span><span class="pdd00307"></div>
     <div class="chat" v-on:click="showMessage" v-if="globalData.maxCount<13"></div>
 
 
@@ -1928,17 +1927,17 @@
             </div>
 
             <div class="alertText">
-                <div class="rull" v-show="alertType==4" style="font-size: 2.2vh"><span class="pdd00308"></span></p><a v-if="ruleInfo.banker_mode==1" class="pdd00309"></a>
+                <div class="rull" v-show="alertType==4" style="font-size: 2.2vh"><span class="pdd00308"></span><a v-if="ruleInfo.banker_mode==1" class="pdd00309"></a>
                     <a v-if="ruleInfo.banker_mode==2" class="pdd00310"></a>
                     <a v-if="ruleInfo.banker_mode==3" class="pdd00311"></a>
                     <a v-if="ruleInfo.banker_mode==4" class="pdd00312"></a>
                     <a v-if="ruleInfo.banker_mode==5" class="pdd00313"></a><br>
-                    <span class="pdd00314"></span></p><a v-if="ruleInfo.baseScore==1" class="pdd00315"></a>
+                    <span class="pdd00314"></span><a v-if="ruleInfo.baseScore==1" class="pdd00315"></a>
                     <a v-if="ruleInfo.baseScore==2" class="pdd00316"></a>
                     <a v-if="ruleInfo.baseScore==3" class="pdd00317"></a>
                     <a v-if="ruleInfo.baseScore==4" class="pdd00318"></a>
                     <a v-if="ruleInfo.baseScore==5" class="pdd00319"></a>
-                    <span class="pdd00320"></span></p>
+                    <span class="pdd00320"></span>
                     <a v-if="ruleInfo.timesType==1" class="pdd00321"></a>
 
                     <a v-if="ruleInfo.timesType==2" class="pdd00322"></a>
@@ -1955,14 +1954,14 @@
                     <a v-if="ruleInfo.isCardSequence==1" class="pdd00332"></a>
                     <a v-if="ruleInfo.is_cardnbomb==1" class="pdd00333"></a>
                     <a v-if="ruleInfo.isCardbomb==1||ruleInfo.isCardtiny==1||ruleInfo.isCardfive==1||ruleInfo.isCardfour==1||ruleInfo.isCardStraight==1||ruleInfo.isCardFlush==1||ruleInfo.isCardSequence==1||ruleInfo.isCardCalabash==1"><br></a>
-                    <span class="pdd00334"></span></p>
+                    <span class="pdd00334"></span>
                     <a class="pdd00335">{{game.total_num}}</a><br>
                     <span v-if="ruleInfo.banker_mode==5" class="pdd00336">
                         <a v-if="ruleInfo.banker_score==1" class="pdd00337"></a>
                         <a v-if="ruleInfo.banker_score==2" class="pdd00338"></a>
                         <a v-if="ruleInfo.banker_score==3" class="pdd00339"></a>
                         <a v-if="ruleInfo.banker_score==4" class="pdd00340"></a><br></span>
-                    <span class="pdd00131"></span></p>
+                    <span class="pdd00131"></span>
                     <a v-if="ruleInfo.bet_type==0" class="pdd00341"></a>
                     <a v-if="ruleInfo.bet_type==1" class="pdd00342"></a>
                     <a v-if="ruleInfo.bet_type==2" class="pdd00343"></a>
@@ -2076,12 +2075,12 @@
              style="position: absolute;top:0;left: 0;width: 100vw;height: 100vh"/>
         <img class="tableBack" v-bind:src="'/files/images/hall/'+globalData.hallEname+'/hall-name.png'"
              style="position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);width: 1.4rem;height: 0.4rem;"/>
-        <div class="roomNum pdd00354"
-             style="position: absolute;top: 40%;left: 50%;text-align: center;transform: translateX(-50%);color: #66a6d2;font-size: 0.15rem;">
+        <div class="roomNum"
+             style="position: absolute;top: 40%;left: 50%;text-align: center;transform: translateX(-50%);color: #66a6d2;font-size: 0.15rem;"><span class="pdd00354"></span>
             {{globalData.roomNumber}}
         </div>
         <div style="position: absolute;color: #fff;font-size: 0.15rem;"
-             :style="globalData.maxCount>=13?'top: 4%;left: 50%;transform: translateX(-50%);':'top: 8%;left: 2%;'" class="pdd00414">
+             :style="globalData.maxCount>=13?'top: 4%;left: 50%;transform: translateX(-50%);':'top: 8%;left: 2%;'" ><span class="pdd00414"></span>
             {{userData.userCode}}
         </div>
 
@@ -2610,11 +2609,11 @@
                 </div>
                 <div class="flex-cont" data-pos="0">
                     <div class="name pdd00387"></div>
-                    <div class="flex-item" v-if="ruleInfo.banker_mode==1"><span class="zhuangType pdd00388"></span></p></div>
-                    <div class="flex-item" v-if="ruleInfo.banker_mode==2"><span class="zhuangType pdd00389"></span></p></div>
-                    <div class="flex-item" v-if="ruleInfo.banker_mode==3"><span class="zhuangType pdd00390"></span></p></div>
-                    <div class="flex-item" v-if="ruleInfo.banker_mode==4"><span class="zhuangType pdd00391"></span></p></div>
-                    <div class="flex-item" v-if="ruleInfo.banker_mode==5"><span class="zhuangType pdd00392"></span></p></div>
+                    <div class="flex-item" v-if="ruleInfo.banker_mode==1"><span class="zhuangType pdd00388"></span></div>
+                    <div class="flex-item" v-if="ruleInfo.banker_mode==2"><span class="zhuangType pdd00389"></span></div>
+                    <div class="flex-item" v-if="ruleInfo.banker_mode==3"><span class="zhuangType pdd00390"></span></div>
+                    <div class="flex-item" v-if="ruleInfo.banker_mode==4"><span class="zhuangType pdd00391"></span></div>
+                    <div class="flex-item" v-if="ruleInfo.banker_mode==5"><span class="zhuangType pdd00392"></span></div>
                 </div>
                 <div class="flex-cont" data-pos="1">
                     <div class="name pdd00393"></div>
@@ -2622,8 +2621,8 @@
                 </div>
                 <div class="flex-cont" data-pos="2">
                     <div class="name pdd00320"></div>
-                    <div v-if="ruleInfo.timesType==1" class="flex-item"><span class="pdd00321"></span></p></div>
-                    <div v-if="ruleInfo.timesType==2" class="flex-item"><span class="pdd00322"></span></p></div>
+                    <div v-if="ruleInfo.timesType==1" class="flex-item"><span class="pdd00321"></span></div>
+                    <div v-if="ruleInfo.timesType==2" class="flex-item"><span class="pdd00322"></span></div>
                 </div>
                 <div class="flex-cont" data-pos="8" v-if="ruleInfo.laizi_num>0">
                     <div class="name pdd00395"></div>
@@ -2659,6 +2658,17 @@
                     <div class="name pdd00404"></div>
                     <div class="flex-item pdd00405" v-if="ruleInfo.isLaizi==1"></div>
                     
+
+                </div>
+                <div class="flex-cont" data-pos="8">
+                    <p style="width: 100%;margin: 10px;"><img src="/files/images/common/nnRule2.png?v=20192"
+                                                              style="width: 100%;"></p>
+                </div>
+
+
+            </div>
+            <div class="rules-bottom"></div>
+            
         </div>
     </div>
 
@@ -2748,11 +2758,11 @@
         <div style="background: rgba(0,0,0,0.5);position: fixed;top: 0;left: 0;width: 100%;height: 100%;"
              onclick="hideQrCode()"></div>
         <div style="background: url(/files/images/daoyou/indiv/box.png) no-repeat;position: relative;background-size: 100% 100%;width: 64vw;height: 80vw;left: 50%;top: 50%;transform: translate(-50%,-50%);">
-            <span style="position:absolute;top: 0.1rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 18px;" class="pdd00410"></span></p>
+            <span style="position:absolute;top: 0.1rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 18px;" class="pdd00410"></span>
             <div id="divOne"></div>
             <img id='imgOne'
                  style="width: 50vw; height:50vw; box-sizing: border-box;position: absolute;overflow: scroll; border-radius: 4px;left: 50%;top: 48%;transform: translate(-50%,-50%);"/>
-            <span style="position:absolute;bottom: 0.25rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 16px;" class="pdd00411"></span></p>
+            <span style="position:absolute;bottom: 0.25rem;left: 50%;transform: translateX(-50%); width: 70vw;text-align: center; color: #fff;font-size: 16px;" class="pdd00411"></span>
         </div>
     </div>
 </div>
